@@ -1,4 +1,3 @@
-// Post.tsx
 import React, { useState } from 'react';
 import Comment from './Comment';
 import './post.css';
@@ -39,22 +38,21 @@ const Post: React.FC<PostProps> = ({ postId, postContent, comments, onDelete }) 
 
   return (
     <div className="post-container">
-      {/* Contenido del post */}
-      <div className="post-content-container">
-        {isEditing ? (
-          <textarea 
-            value={editedContent}
-            onChange={(e) => setEditedContent(e.target.value)}
-          />
-        ) : (
-          <p className="post-content">{currentPostContent}</p>
-        )}
+      <div className="card__flipper">
+        <div className="card__front">
+          {isEditing ? (
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+            />
+          ) : (
+            <p className="card__name">{currentPostContent}</p>
+          )}
+        </div>
       </div>
-
-      {/* Botones de editar y borrar */}
       <div className="buttons-container">
         {isEditing ? (
-          <button className="btn btn-success btn-lg mr-2" onClick={handleSave}>Guardar</button>
+          <button className="btn btn-success btn-sm mr-2" onClick={handleSave}>Guardar</button>
         ) : (
           <>
             <button className="btn btn-secondary btn-sm mr-2" onClick={handleEdit}>Editar</button>
@@ -62,21 +60,15 @@ const Post: React.FC<PostProps> = ({ postId, postContent, comments, onDelete }) 
           </>
         )}
       </div>
-
-      {/* Botón para ver/ocultar comentarios */}
       <button 
-        className="btn btn-primary btn-sm mt-2"
+        className="btn btn-primary btn-sm mt-2 btn-see-comments"
         onClick={toggleCommentsVisibility}
       >
         {areCommentsVisible ? "Ocultar comentarios" : "Ver comentarios"}
       </button>
-
-      {/* Renderizado de comentarios */}
       {areCommentsVisible && (
         <div className="comments-container">
-          {/* Título "Agrega tu comentario" */}
-          <h3>Agrega tu comentario</h3>
-          {/* Renderizar todos los comentarios */}
+          <h3>Comentarios</h3>
           {comments.map((comment, index) => (
             <div key={index} className="comment-container">
               <Comment content={comment} />

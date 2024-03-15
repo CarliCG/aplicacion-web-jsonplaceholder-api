@@ -1,53 +1,90 @@
-/* post.css */
+body {
+  display: flex; /* Para que todos los elementos dentro del body se comporten como flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  padding: 30px; /* Añadir un poco de espacio alrededor del contenido */
+  font-family: Arial, sans-serif; /* Tipo de letra */
+}
 
 /* Estilos para el contenedor principal del post */
 .post-container {
-  background-color: #fdfdfd;
-  border: 1px solid #d96060;
-  padding: 10px;
+  display: grid;
+  background-color: #efebeb;
+  border: none; /* Eliminamos el borde sólido */
+  border-radius: 10px; /* Agregamos bordes redondeados */
+  box-shadow: 0 2px 4px rgba(10, 20, 91, 0.79); /* Agregamos sombra */
+  padding: 20px; /* Aumentamos el relleno para dar espacio entre el contenido y los bordes */
   margin-bottom: 20px;
 }
+
+
 
 /* Estilos para el contenedor del contenido del post */
 .post-content-container {
   margin-bottom: 10px;
+  flex: 1 1 150px; /* Agregamos flex: 1 1 150px; para que ocupe el espacio restante y tenga un ancho mínimo de 150px */
 }
 
-/* Estilos para el contenido del post */
-.post-content {
-  font-weight: bold;
+/* Estilos para el botón para ver/ocultar comentarios */
+.btn-see-comments {
+  margin-top: 5px; /* Reducir el margen superior */
+  font-size: 14px; /* Reducir el tamaño de fuente */
+  padding: 5px 10px; /* Reducir el relleno (padding) del botón */
+  max-width: 150px; /* Establecer un ancho máximo para el botón */
+  margin: 0 auto; /* Centrar el botón horizontalmente */
+  
 }
 
-/* Estilos para el contenedor de todos los comentarios */
-.all-comments-container {
-  margin-top: 20px;
+.comments-container {
+  max-height: 300px; /* Establecer una altura máxima para los comentarios */
+  overflow-y: auto; /* Agregar desplazamiento vertical si los comentarios exceden la altura máxima */
+  width: 600px; /* Establecer un ancho fijo para el contenedor de comentarios */
+  box-sizing: border-box; /* Incluye el padding en el ancho */
+  padding: 10px; /* Agregar un poco de espacio interno */
+  margin-left: auto; /* Centra horizontalmente */
+  margin-right: auto; /* Centra horizontalmente */
 }
 
-/* Estilos para el contenedor de cada post dentro del acordeón */
-.accordion-item {
-  margin-bottom: 10px; /* Agrega espacio entre cada post */
-}
-
-/* Estilos para el encabezado del post dentro del acordeón */
-.accordion-header {
-  background-color: #e6e6e6; /* Color de fondo del encabezado */
-  padding: 10px; /* Añade espacio interior al encabezado */
-}
-
-/* Estilos para el cuerpo del post dentro del acordeón */
-.accordion-body {
-  background-color: #f5f5f5; /* Color de fondo del cuerpo */
-  padding: 10px; /* Añade espacio interior al cuerpo */
-}
 
 /* Estilos para el contenedor de cada comentario dentro del acordeón */
 .comment-container {
-  background-color: #e6e6e6;
-  border: 1px solid #999;
+  background-color: #ffffff;
+  border: 1px solid #050505;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(126, 15, 160, 0.152); /* Sombra suave */
 }
 
-.comment-content {
-  font-style: italic;
+/* Estilos para el contenido dentro de las tarjetas */
+.card__name {
+  font-size: 16px; /* Reducir el tamaño de fuente */
+  margin: 5px; /* Reducir el margen superior e inferior */
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: left; /* Centrar los botones horizontalmente */
+  margin-top: 20px; /* Espacio superior */
+  
+}
+
+
+.card__front {
+  background-color: #cdc9c9; /* Color de fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
+  padding: 20px; /* Espaciado interno */
+  width: 100%; /* Ocupar todo el ancho del contenedor */
+  transition: transform 0.3s; /* Efecto de transición al pasar el cursor */
+}
+
+.card__name {
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Texto en negrita */
+  color: #333; /* Color del texto oscuro */
+}
+
+.card__content {
+  font-size: 16px; /* Tamaño de fuente del contenido */
+  color: #666; /* Color del texto gris */
 }
