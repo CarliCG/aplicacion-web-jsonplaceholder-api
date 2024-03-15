@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useEffect, useState } from 'react';
 import Post from './components/Post';
 import { fetchPostsAndComments } from './services/jsonPlaceholderService';
@@ -20,22 +19,41 @@ const App: React.FC = () => {
   }, []);
 
   const handleDeletePost = (postId: number) => {
-    // Filtramos los posts para excluir el post que se está borrando
     const updatedPosts = posts.filter((post) => post.id !== postId);
-    // Actualizamos el estado de los posts con los posts filtrados
+    setPosts(updatedPosts);
+  };
+
+  const handleCreatePost = () => {
+    const newPost = {
+      id: Math.floor(Math.random() * 1000),
+      title: "Nuevo Post",
+      comments: []
+    };
+    setPosts([newPost, ...posts]);
+  };
+
+  const handleUpdateComments = (postId: number, updatedComments: string[]) => {
+    const updatedPosts = posts.map(post => {
+      if (post.id === postId) {
+        return { ...post, comments: updatedComments };
+      }
+      return post;
+    });
     setPosts(updatedPosts);
   };
 
   return (
     <div>
       <h1>Prueba Técnica</h1>
+      <button onClick={handleCreatePost}>Crear un Post</button>
       {posts.map((post) => (
         <Post
           key={post.id}
           postId={post.id}
           postContent={post.title}
           comments={post.comments}
-          onDelete={handleDeletePost} // Pasamos la función onDelete al componente Post
+          onDelete={handleDeletePost}
+          onUpdateComments={handleUpdateComments} // Pasar la función onUpdateComments como prop
         />
       ))}
     </div>
