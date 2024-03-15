@@ -1,13 +1,16 @@
+// Post.tsx
 import React, { useState } from 'react';
 import Comment from './Comment';
 import './post.css';
 
 interface PostProps {
+  postId: number; // Identificador único del post
   postContent: string;
   comments: string[];
+  onDelete: (postId: number) => void; // Función para manejar la eliminación del post
 }
 
-const Post: React.FC<PostProps> = ({ postContent, comments }) => {
+const Post: React.FC<PostProps> = ({ postId, postContent, comments, onDelete }) => {
   const [areCommentsVisible, setAreCommentsVisible] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [editedContent, setEditedContent] = useState<string>(postContent);
@@ -29,8 +32,8 @@ const Post: React.FC<PostProps> = ({ postContent, comments }) => {
   const handleDelete = () => {
     const confirmed = window.confirm("¿Estás seguro de borrar este post?");
     if (confirmed) {
-      // Borrar el post (aquí puedes añadir la lógica para borrar el post)
-      console.log("Post borrado");
+      // Llamamos a la función onDelete con el postId para borrar el post
+      onDelete(postId);
     }
   };
 
@@ -51,18 +54,18 @@ const Post: React.FC<PostProps> = ({ postContent, comments }) => {
       {/* Botones de editar y borrar */}
       <div className="buttons-container">
         {isEditing ? (
-          <button className="btn btn-success mr-2" onClick={handleSave}>Guardar</button>
+          <button className="btn btn-success btn-lg mr-2" onClick={handleSave}>Guardar</button>
         ) : (
           <>
-            <button className="btn btn-secondary mr-2" onClick={handleEdit}>Editar</button>
-            <button className="btn btn-danger" onClick={handleDelete}>Borrar</button>
+            <button className="btn btn-secondary btn-sm mr-2" onClick={handleEdit}>Editar</button>
+            <button className="btn btn-danger btn-sm" onClick={handleDelete}>Borrar</button>
           </>
         )}
       </div>
 
       {/* Botón para ver/ocultar comentarios */}
       <button 
-        className="btn btn-primary mt-2"
+        className="btn btn-primary btn-sm mt-2"
         onClick={toggleCommentsVisibility}
       >
         {areCommentsVisible ? "Ocultar comentarios" : "Ver comentarios"}
